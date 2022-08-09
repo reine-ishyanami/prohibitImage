@@ -7,6 +7,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class BootApplication extends Application {
     @Override
@@ -16,7 +17,8 @@ public class BootApplication extends Application {
         stage.setTitle("禁止图片生成");
         stage.setResizable(false);
         stage.setScene(scene);
-        Image image = new Image("images/prohibit.png");
+        String url = Objects.requireNonNull(BootApplication.class.getResource("/images/prohibit.png")).toExternalForm();
+        Image image = new Image(url);
         stage.getIcons().add(image);
         stage.show();
     }
