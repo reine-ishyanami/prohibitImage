@@ -1,5 +1,6 @@
 package com.reine.prohibitimage.fxcontroller;
 
+import com.reine.prohibitimage.BootApplication;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,6 +18,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Objects;
 import java.util.Optional;
 
 public class MainController {
@@ -75,7 +77,8 @@ public class MainController {
         double height = image.getHeight();
         WritableImage writableImage = new WritableImage(image.getPixelReader(), (int) width, (int) height);
         PixelWriter pixelWriter = writableImage.getPixelWriter();
-        Image prohibit = new Image("images/prohibit.png", width, height, false, true);
+        String url = Objects.requireNonNull(BootApplication.class.getResource("/images/prohibit.png")).toExternalForm();
+        Image prohibit = new Image(url, width, height, false, true);
         PixelReader pixelReader = prohibit.getPixelReader();
         // 编辑图片
         for (int i = 0; i < (int) width; i++) {
